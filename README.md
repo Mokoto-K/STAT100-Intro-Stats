@@ -1,2 +1,5 @@
 # STATS100
-The title says it all
+First stats class, this will be a repository to keep everything for this class in one place
+
+## Assignments
+-
