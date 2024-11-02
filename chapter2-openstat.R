@@ -18,3 +18,7 @@ mean(interest_rate)
 # histogram of the interest rates
 hist(interest_rate, col="darkmagenta", xlab = "Interest Rate", 
      breaks = 10)
+
+loans <- read.csv("./workshop-datasets/loans.csv")
+
+table(loans$homeownership)
