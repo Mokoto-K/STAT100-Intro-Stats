@@ -36,3 +36,5 @@ hist(results)
 
 
 pnorm(-2)
+
+qnorm(0.995)
