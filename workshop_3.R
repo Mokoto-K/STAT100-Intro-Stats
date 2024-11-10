@@ -33,7 +33,7 @@ pbinom(2, 3, 0.25)
 
 # LOADING IN SOME DATA
 
-data = read.csv('./workshop-datasets/rugby_fitness.csv')
+data = read.csv('../workshop-datasets/rugby_fitness.csv')
 str(data)
 attach(data)
 
