@@ -183,3 +183,96 @@ lower = x - margin_error
 # Brute force the sum for margin of error
 # margin_error = z * std / n**0.5
 # 10 = 1.96  * 100 / n**0.5 # 1.96 is 95 conf level
+
+#----------7.3 Difference of two means---------------
+
+# Example 7.22
+n = 9
+x1 = 3.5
+x2 = -4.33
+x = x1 - x2
+
+s1 = 5.17
+s2 = 2.76
+# se = s1^2 + s2^2 / n ^0.5 
+se = (((s1)**2 + (s2)**2)/n)**0.5
+
+df = n -1
+
+ci = 0.025
+t_star = qt(ci, df)
+
+margin_error = t_star * se 
+
+lower = x + margin_error
+upper = x - margin_error
+
+
+# Example 7.23
+#h0 = there will be no difference in averages between the smoking and non
+# smoking group, µ1 - µ2 = 0
+#hA = there will be difference in the averages of the two groups µ1 - µ2 ≠ 0
+
+# Example 7.24
+#a 
+n1 = 100
+n2 = 50
+x2 = 6.78
+x1 = 7.18
+x = x1 - x2 
+x
+
+#b
+s1 = (1.60**2) / n1
+s2 = (1.43**2) / n2
+se = (s1 + s2)**0.5
+se
+
+# Example 7.25 
+alpha = 0.05
+µ = 0 # From h0
+T = (x - µ) / se
+df = n2 - 1 # n2 is the smaller of the two n's
+p_value = (1 - pt(T, df)) * 2
+# P_value is greater then alpha, therefore we do not reject the null hyp, and 
+# so we cannot say that smoking changes bab size from dis hospital
+
+
+# Example 7.28
+# h0 = 0 there is no difference in avgs across both exams
+# hA ≠ 0 there is a difference in avgs across both exams
+
+µ = 0 
+alpha = 0.01
+
+n1 = 30
+n2 = 27
+n = 27
+df = n - 1
+
+x1 = 79.4
+x2 = 74.1
+x = x1 - x2
+
+s1 = 14**2 / n1
+s2 = 20**2 / n2
+se = (s1 + s2)**0.5
+
+T = (x - µ) / se
+p_value = (1 - pt(T, df)) * 2
+
+# Pvalue is greater than alpha therefore we do not reject the null hypothesis 
+# and there is no evidence the tests were unfair and most likely the students
+# are just whinning little bitches
+
+
+
+
+
+
+
+
+
+
+
+
