@@ -29,7 +29,7 @@ pt(-2.10, 18)
 
 (1 - pt(3, 2)) * 2
 
-#Exercise 7.1 
+#Exercise 7.1
 qt(0.95, 5) #a
 
 #b
@@ -38,7 +38,7 @@ cl = 0.98
 df = n - 1
 qt(0.01, df)
 
-#c 
+#c
 n = 29
 cl = 0.95
 df = n - 1
@@ -184,6 +184,86 @@ lower = x - margin_error
 # margin_error = z * std / n**0.5
 # 10 = 1.96  * 100 / n**0.5 # 1.96 is 95 conf level
 
+#----------7.2 Paired Data---------------
+
+# 7.2.2 Inference for paired data
+
+#h0 = 0, there is no difference in prices from books offered by both services
+#hA \= 0, there is a difference in prices from books offered by both services
+
+n = 68
+df = n - 1
+
+s = 13.42
+se = s / n**0.5
+
+x = 3.58
+T = (x - 0) / se
+p_value = (1- pt(T,df)) *2
+
+# Since the p value is < 0.05 we reject the null hypot and say that on average
+# one service is cheaper than the other, amazon in this case.
+
+########### EXERCISE 7.19
+
+ci = qt(0.975, df) * se
+upper = x + ci
+lower = x - ci
+sprintf("%1.2f - %1.2f", lower, upper)
+
+# UCLA Students should always check amazon before buying a txtbook as we are 95%
+# confident they may find a book cheaper there.
+
+
+#########EXERCISE 7.15
+
+# Non-paired test, we would want to do a two sample means test to spot the 
+# difference. This is because it is the same location we would be comparing
+# it too, just one year earlier compared to comparing the air quality of one
+# city to another.
+
+# So im dead wrong on this answer and apparently I dont get it at all and it is
+# pretty much the opposite of what I said.....
+
+#########EXERCISE 7.17
+
+#a - Paired
+#b - Two sampled means???
+#c - Paired
+#d - Paired
+
+#########EXERCISE 7.19
+
+#a - Since it is the sample weather stations that we are taking the samples
+# from they are from the same source and therefore pair that data daawggg
+
+#b - h0 = 0, there will be 0 days difference exceededing 90 degrees for the two
+# different years
+#    hA > 0, there will be more days exceeding 90 degrees in 2018 compaered to
+# 1948
+
+#c - Stations are all independent and no outliers
+
+#d 
+x = 2.9
+s = 17.2
+n = 197
+df = n - 1
+
+se = s / n**0.5
+T = x / se
+p_value = 1 - pt(T, df)
+
+#e - with alpha = 0.05, the p_value is far less than this, so we reject the null
+# hypothesis that there were no change in number of days above 90 degrees
+# and infact there were significantly more.
+
+#f - Type 1 error, we rejected the null when it could have been true. But we didnt
+# make that error.
+
+#g - Based on the hypt testing, I would not expect to see 0 within the conf 
+# Interval.
+
 #----------7.3 Difference of two means---------------
 
 # Example 7.22
@@ -267,12 +347,108 @@ p_value = (1 - pt(T, df)) * 2
 
 
 
+#----------7.5 Comparing many means with ANOVA---------------
+
+# Guilded prac 7.42
+# 
+# Ho: The average on base percentage is equal across the three positions.
+# Ha: The average on base percentage varies across some or all of the groups.
+
+k = 3
+dfg = k - 1
+n = 160 + 205 + 64
+df = n - k
+f = 0.00803 / 0.00158
 
 
 
+# Exercise 7.37
+# 
+# Ho: diff = 0 or µ1 - µ2 ... µn = 0, There is no difference in the weight of 
+# chickens when eating a different type of seed.
+# 
+# Ha: diff ≠ 0 or µ1 - µ2 ... µn ≠ 0, There is a difference in weight of chickens
+# when eating different seed.
+# 
+# Since the p value is significantly below our alpha of 0.05, we can conclude that 
+# there is sufficant evidence that we can reject the null hypothesis that there is 
+# no difference in weight between chickens who eat a different seed. From the data
+# we can see that the horsebean chickens have the smallest weights and the sunflower
+# chickens have the highest weight.
+
+# Exercise 7.39
+# 
+# a) 
+# Ho: There is no difference in physical activity no matter how much coffee you consume
+# Ha: There is a difference in physical activity depending on how much coffee you
+# consume
+# 
+# b) The std are all simnilar so that is ok to proceed with the anova test, but the
+# amount of participants in each study is wildly different so im unsure if that is
+# ok for this test. Everything else looks fine.
+# 
+# c)
 
 
 
+# 
+# d) With such a small p value we can conclude that there is significant evidence
+# for us to reject the null hypothesis and say that there does seem to be a connection
+# with amount of caffine consumed and physical activity dontCheck()
 
 
+#Exercise 7.41
+
+# a) 
+# Ho: µ1 = µ2 =.... µn, there is no difference in gpa across any field of study
+# Ha: µ1 ≠ µ2 ≠ ... µn, there is a difference in gpa between atleast two fields
+# of study
+# 
+# b) Since the p value is greater than 0.05, there is not enough evidence in the data
+# to reject the null hypothesis and therefore we cannot say that there is a difference
+# between the average gpa and these three majors.
+# 
+# c) 198
+# 
+# Exercise 7.42
+# 
+# a) 
+# Ho: there is no difference in work hours across all the grouypd in the study
+# Ha: There is a difference in work hours in atleast one of the jobs in the study
+# compared to the otheres.
+# 
+# b) The deviations are all fairly similiart so this is ok
+# There is many outliers in a few of the groups but the amount of participants 
+# is large so this is ok, as well as with the skew, infact the amount of participants
+# only really helps the skew and not the outliers, but there are no egregious outliers
+# and they seem evenly spread on both sides. The skew overall isnt bad. We assume
+# there was independence as we can not varify.
+# 
+# c)
+# n = 1172
+# k = 5
+# dfg = k - 1
+# df = n - k
+# totaldf = dfg+df
+# Mean_sq = 501.64
+# ssg = dfg * Mean_sq
+# sse = 267382
+# mse = 1 / df * sse
+# msg = 501.64
+# f = msg / mse
+# 
+# d) The test statistic shown in the table above is a pvalue=0.068 (f=2.19, df=4,11678) 
+# As the p value is gre4ater than 0.05 we do not reject the null hypothesis. The data
+# provides strong evidence that the mean level of hours worked amoung the 5 difference
+# education groups are not different. Edicational attainment doesnt seem to appear
+# to be asscoiated with significantly different working hours in the us as per the
+# findings of this study.
+# 
+# Exercise 7.43
+# 
+# a) I dont know
+# b) Yes This is true
+# c) False, the variance across groups should always be relativly close. Using the rule of thumb
+# we say that no variance for a group should be more than 2 times away from the others.
+# d) False, you can never relax the independecnce parameter for an anova test.
 
